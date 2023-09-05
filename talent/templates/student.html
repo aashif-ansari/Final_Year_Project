@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/table-style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css1/test.css' %}"> {% endcomment %}
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">Audtions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/postdetail/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search here">
+                        
+                    </label>
+                </div>
+
+                {% comment %} <form action="" method="GET" >
+                    <div class="search">
+                    
+                        <label>
+                            <input type="text" placeholder="Search Here" name="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <button type="submit" name="submit">Search
+                            </button> 
+                        </label>
+                    
+                    </div>
+
+                    
+                </form> {% endcomment %}
+
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+            
+               
+
+            {% comment %} <br>
+            <center><h1>Profile Details</h1></center>   
+            <br>
+            <br>
+            <center>
+                <a href="{% url 'addstudent' %}"><button class="button">ADD NEW STUDENT</button></a> 
+            </center>     
+            <div class="table_box">
+                <div class="table_row table_head">
+                    <div class="table_cell">
+                        <h5>ID</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>FNAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>LNAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>PASSWORD</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>ADDRESS</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>GENDER</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>DOB</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>PH NO</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>EMAIL</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>EDIT</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>DELETE</h5>
+                    </div>
+                    
+                </div>
+                {% for i in Student %}
+                    <div class="table_row " >
+                            <p class="table_cell">{{i.stu_id}}</p>
+                            <p class ="table_cell">{{i.stu_firstname}}</p>
+                            <p class ="table_cell">{{i.stu_lastname}}</p>
+                            <p class= "table_cell">{{i.stu_password}}</p>
+                            <p class="table_cell"> {{i.stu_address}} </p>
+                            <p class="table_cell">{{i.stu_gender}}</p>
+                            <p class="table_cell">{{i.stu_dob}}</p>
+                            <p class="table_cell">{{i.stu_mobile}}</p>
+                            <p class="table_cell">{{i.stu_email}}</p>
+                            
+                           
+                            <p class ="table_cell">
+                                <a href="/editstudent/{{i.stu_id}}">
+                                
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                    
+                                </a>
+                            </p> 
+                            <p class="table_cell">
+                                <a href="/delstudent/{{i.stu_id}}">
+                                    <span class="icon"><i class="bi-x-circle-fill"></i></span>
+                                </a>
+                            </p>  
+                    </div>
+                {% endfor %}
+            </div> {% endcomment %}
+
+
+            <br>
+            <br>
+            <center><h1>Profile Details</h1></center>   
+            
+            <center>
+                {% comment %} <a href="{% url 'addstudent' %}"><button class="button">ADD NEW STUDENT</button></a>  {% endcomment %}
+            </center>     
+            <div class="table_box">
+                <div class="table_row table_head">
+                    <div class="table_cell">
+                        <h5>PROFILE ID</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>USERNAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>BIO</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>PROFILE IMAGE</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>CUSTOMER NAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>DELETE</h5>
+                    </div>
+                    
+                </div>
+                {% for i in Profile %}
+                    <div class="table_row " >
+                            <p class="table_cell">{{i.pf_id}}</p>
+                            <p class ="table_cell">{{i.pf_username}}</p>
+                            <p class= "table_cell">{{i.pf_bio}}</p>
+                            <p class ="table_cell"><img src="{{i.pf_image.url}}"  width="100px" alt="image"></p> 
+                           
+                            <p class="table_cell">{{i.cust.cust_firstname}}</p>
+                            
+
+                        
+                            <p class="table_cell">
+                                <a href="/delpost/{{i.post_id}}">
+                                    <span class="icon"><i class="bi-x-circle-fill"></i></span>
+                                </a>
+                            </p>  
+                    </div>
+                {% endfor %}
+            </div>
+
+            
+            <br>
+            <br>
+            <center><h1>Post Details</h1></center>   
+            
+            <center>
+                {% comment %} <a href="{% url 'addstudent' %}"><button class="button">ADD NEW STUDENT</button></a>  {% endcomment %}
+            </center>     
+            <div class="table_box">
+                <div class="table_row table_head">
+                    <div class="table_cell">
+                        <h5>POST ID</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>POST DATE</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>POST IMAGE</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>POST CAPTION</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>NO OF LIKES</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>CUSTOMER NAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>DELETE</h5>
+                    </div>
+                    
+                </div>
+                {% for i in CommunityPost %}
+                    <div class="table_row " >
+                            <p class="table_cell">{{i.post_id}}</p>
+                            <p class ="table_cell">{{i.post_date}}</p>
+                            <p class ="table_cell"><img src="{{i.post_img.url}}"  width="100px" alt="image"></p> 
+                            <p class= "table_cell">{{i.post_cap}}</p>
+                            <p class="table_cell">{{i.no_of_likes}}</p>
+                            <p class="table_cell">{{i.cust.cust_firstname}}</p>
+
+                        
+                            <p class="table_cell">
+                                <a href="/deletepost/{{i.post_id}}">
+                                    <span class="icon"><i class="bi-x-circle-fill"></i></span>
+                                </a>
+                            </p>  
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+
+
+    </div>
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+
+
+
+
+</body>
+</html>

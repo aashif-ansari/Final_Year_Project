@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/table-style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css1/test.css' %}"> {% endcomment %}
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">Audtions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/student/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logoutadmin/">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+{% comment %}
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search here">
+                        
+                    </label>
+                </div>
+ {% endcomment %}
+                    <form id="search-form">
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search" placeholder="Search here">
+                        
+                    </label>
+                </div>
+                    
+                </form>
+                
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+            
+               
+            <br>
+            <center><h1>Staff Details</h1></center>  
+            <br>
+            <br>
+            <center>
+                <a href="{% url 'addstaff' %}"><button class="button">ADD NEW STAFF</button></a> 
+            </center>
+            <div class="table_box" id="staff-list">
+
+                <div class="table_row table_head">
+                    <div class="table_cell">
+                        <h5>ID</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>FNAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>LNAME</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>PASSWORD</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>ADDRESS</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>EMAIL</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>PH NO</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>JOINING DATE</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>WORK DURATION</h5>
+                    </div>
+                    {% comment %} <div class="table_cell">
+                        <h5>LEAVE</h5>
+                    </div> {% endcomment %}
+                    <div class="table_cell">
+                        <h5>SALARY</h5>
+                    </div>
+                    
+                    <div class="table_cell">
+                        <h5>EDIT</h5>
+                    </div>
+                    <div class="table_cell">
+                        <h5>DELETE</h5>
+                    </div>
+                    
+                </div>
+                {% for i in Staff %}
+                    <div class="table_row " >
+                            <p class="table_cell">{{i.staff_id}}</p>
+                            <p class ="table_cell">{{i.staff_firstname}}</p>
+                            <p class ="table_cell">{{i.staff_lastname}}</p>
+                            <p class= "table_cell">{{i.staff_password}}</p>
+                            <p class="table_cell"> {{i.staff_address}} </p>
+                            <p class="table_cell">{{i.staff_email}}</p>
+                            <p class="table_cell">{{i.staff_mobile}}</p>
+                            <p class="table_cell">{{i.staff_joining_date}}</p>
+                            <p class="table_cell">{{i.staff_work_duration}}</p>
+                            {% comment %} <p class="table_cell">{{i.staff_leave}}</p> {% endcomment %}
+                            <p class="table_cell">{{i.staff_salary}}</p>
+                           
+                            <p class ="table_cell">
+                                <a href="/editstaff/{{i.staff_id}}">
+                                
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                    
+                                </a>
+                            </p> 
+                            <p class="table_cell">
+                                <a href="/delstaff/{{i.staff_id}}">
+                                    <span class="icon"><i class="bi-x-circle-fill"></i></span>
+                                </a>
+                            </p>  
+                    </div>
+                {% endfor %}
+            
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+    
+
+
+
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function() {
+        // Trigger search on input change
+        $('#search-input').on('input', function() {
+            var searchText = $(this).val();
+            // Send AJAX request to server to fetch search results
+            $.ajax({
+                url: '/staff/',  // Replace with your URL for customer_show view
+                type: 'GET',
+                data: {'search': searchText},
+                success: function(data) {
+                    $('#staff-list').html(data);
+                },
+                error: function() {
+                    console.log('Error occurred during search');
+                }
+            });
+        });
+    });
+    </script>

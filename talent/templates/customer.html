@@ -1,0 +1,258 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/table-style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css1/test.css' %}"> {% endcomment %}
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <!-- Add the following line in the head or at the bottom of the body section -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">Audtions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/student/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logoutadmin/">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <form id="search-form">
+                   
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search" placeholder="Search here">
+                        
+                    </label>
+                </div>
+                    
+                </form>
+                
+                {% comment %} <form action="" method="GET" >
+                    <div class="search">
+                    
+                        <label>
+                            <input type="text" placeholder="Search Here" name="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <button type="submit" name="submit">Search
+                            </button> 
+                        </label>
+                    
+                    </div>
+
+                    
+                </form> {% endcomment %}
+
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+            
+               
+
+                <br>
+                <center><h1>Customer Details</h1></center>
+                
+                <div class="table_box" id="customer-list">
+                    {% comment %} <a href="#"><h4 align="center"><button class="button">ADD NEW CUSTOMER</button></h4></a> {% endcomment %}
+                    <br>
+                    <div class="table_row table_head">
+                        <div class="table_cell">
+                            <h5>ID</h5>
+                        </div>
+                        <div class="table_cell">
+                            <h5>FIRST NAME</h5>
+                        </div>
+                        <div class="table_cell">
+                            <h5>LAST NAME</h5>
+                        </div>
+                        <div class="table_cell">
+                            <h5>PASSWORD</h5>
+                        </div>
+                        
+                        {% comment %} <div class="table_cell">
+                            <h5>ADDRESS</h5>
+                        </div> {% endcomment %}
+                        <div class="table_cell">
+                            <h5>GENDER</h5>
+                        </div>
+                        {% comment %} <div class="table_cell">
+                            <h5>DOB</h5>
+                        </div>
+                        <div class="table_cell">
+                            <h5>PH NO</h5>
+                        </div> {% endcomment %}
+                        
+                        <div class="table_cell">
+                            <h5>EMAIL</h5>
+                        </div>
+                        
+                        
+                        
+                        <div class="table_cell">
+                            <h5>EDIT</h5>
+                        </div>
+                        <div class="table_cell">
+                            <h5>DELETE</h5>
+                        </div>
+                        
+                    </div>
+                    {% for i in Customer %}
+                        <div class="table_row " >
+                                <p class="table_cell">{{i.cust_id}}</p>
+                                <p class ="table_cell">{{i.cust_firstname}}</p>
+                                <p class ="table_cell">{{i.cust_lastname}}</p>
+                                <p class= "table_cell">{{i.cust_password}}</p>
+                                {% comment %} <p class="table_cell"> {{i.cust_address}} </p> {% endcomment %}
+                                <p class="table_cell">{{i.cust_gender}}</p>
+                                {% comment %} <p class="table_cell">{{i.cust_dob}}</p>
+                                <p class="table_cell">{{i.cust_mobile}}</p> {% endcomment %}
+                                <p class="table_cell">{{i.cust_email}}</p>
+                                
+                               
+                                <p class ="table_cell">
+                                    <a href="/editcust/{{i.cust_id}}">
+                                    
+                                        <span class="icon"><i class="fas fa-edit"></i></span>
+                                        
+                                    </a>
+                                </p> 
+                                <p class="table_cell">
+                                    <a href="/delcustomer/{{i.cust_id}}">
+                                        <span class="icon"><i class="bi-x-circle-fill"></i></span>
+                                    </a>
+                                </p>  
+                        </div>
+                        {% endfor %}
+                
+                
+            
+        </div>
+
+    </div>
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+<script>
+    $(document).ready(function() {
+        // Trigger search on input change
+        $('#search-input').on('input', function() {
+            var searchText = $(this).val();
+            // Send AJAX request to server to fetch search results
+            $.ajax({
+                url: '/customer/',  // Replace with your URL for customer_show view
+                type: 'GET',
+                data: {'search': searchText},
+                success: function(data) {
+                    $('#customer-list').html(data);
+                },
+                error: function() {
+                    console.log('Error occurred during search');
+                }
+            });
+        });
+    });
+    </script>
+
+    
+
+
+
+

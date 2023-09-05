@@ -1,0 +1,18 @@
+
+#course img{
+    max-width: fit-content;
+}
+
+.theme-shadow{
+    box-shadow: var(--box-shadow);
+}
+
+.btn{
+    background-color: var(--black1);
+    color: var(--white1);
+}
+
+.btn:hover{
+    background-color: var(--black2);
+    color: var(--black1);
+}

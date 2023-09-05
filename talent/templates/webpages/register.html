@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Registration - HNJ Films </title>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Sign Up</div>
+    <div class="content">
+      <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input name="fname" id="fname" type="text" placeholder="Enter First Name" required>
+            <span id="fname-error" class="hide required-color error-msg">invalid input</span>
+            <div id="empty-fname" class="hide required-color error-msg"> * first name is required</div>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input name="lname" id="lname" type="text" placeholder="Enter Last Name" required>
+            <span id="lname-error" class="hide required-color error-msg">invalid input</span>
+            <div id="empty-lname" class="hide required-color error-msg"> * last name is required</div>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+            <div id="email-error" class="hide required-color error-msg">please enter valid email</div>
+            <span id="empty-email" class="hide required-color error-msg">* email is required</span>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input name="pass" id="pass" type="password" placeholder="Enter your Password" required>
+            <span id="empty-pass" class="hide required-color error-msg"> * password is required</span>
+            <div id="pass-error" class="hide required-color error-msg">password should have letters, special symbol and minimum 8 character</div>
+          </div>
+          {% comment %} <div class="input-box">
+            <span class="details">Mobile Number</span>
+            <input type="tel" id="mobile" name="mobile" placeholder="Enter your Mobile">
+            <span id="empty-mobile" class="hide required-color error-msg"> * mobile number is required</span>
+            <div id="mobile-error" class="hide required-color error-msg">mobile number should have 10 digit</div>
+          </div> {% endcomment %}
+          {% comment %} <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="text" placeholder="Confirm your password" required>
+          </div> {% endcomment %}
+          {% comment %} <div class="input-box">
+            <span class="details">Date of Birth</span>
+            <input type="date" name="dob"> <br>
+            <div id="dob-error" class="hide required-color error-msg">please select date of birth</div>
+          </div> {% endcomment %}
+        </div>
+        <div class="gender-details">
+          <input type="radio" value="Male" name="gender" id="dot-1" required>
+          <input type="radio" value="Female" name="gender" id="dot-2" required>
+          <input type="radio" value="Other" name="gender" id="dot-3" required>
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Other</span>
+            </label>
+          </div>
+          <div id="gender-error" class="hide required-color error-msg">please select gender</div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register" name="submitBtn">
+        </div>
+      </form>
+    </div>
+      {% for message in messages %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <h3 class="success">{{message}}</h3>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+          <h3 class="required-color">{{message}}</h3>
+        {% endif %}
+
+      {% endfor %}
+      <br>
+      <div class="text-center mt-5 space-x-2">
+        <p class="text-base"> Already Registered ? <a style="text-decoration:none;color:#287bff" href="/signin" class=""> login here </a></p>
+      </div>
+  </div>
+
+  <script src="{% static 'webjs/validations.js' %}"></script>
+</body>
+</html>

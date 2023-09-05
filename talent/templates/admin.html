@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'showservicebook' %}">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">service_book</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/postdetail/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logoutadmin/">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search here">
+                        
+                    </label>
+                </div>
+
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">5054</div>
+                        <div class="cardName">Daily Views</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+                <a style="text-decoration:none;" href="/bookingshow/">
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{coursecount}}</div>
+                        <div class="cardName">Course Bookings</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                    </div>
+                </div>
+                
+                <a style="text-decoration:none;" href="/showservicebook/">
+                <div class="card">
+                    <div>
+                       
+                        <div class="numbers">{{bookcount}}</div>
+                        <div class="cardName">Service Booking</div>
+                        
+                    </div>
+
+                    <div class="iconBx">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                </div>
+                </a>
+
+                <a style="text-decoration:none;" href="/customer/">
+                <div class="card">
+                    <div>
+                        
+                        <div class="numbers">{{ customer_count }}</div>
+                        <div class="cardName">Customers</div>
+                        
+                    </div>
+
+                    <div class="iconBx">
+                        <i class="fas fa-user-check    "></i>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Bookings</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    
+                    
+
+                    <table>
+                        <thead>
+                            <tr >
+                                <td>Name</td>
+                                <td >booking date</td>
+                                <td>Total Price</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        {% for i in  ServiceBook %}
+                        <tbody>
+                           <td>{{i.service.service_name}} </td>
+                           <td>{{i.book_date}} </td>
+                           <td> {{i.book_price}}</td>
+                           <td> paid </td>
+                            
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Students</h2>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer02.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer01.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer02.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer01.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer02.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer01.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer01.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{% static 'assets/imgs/customer02.jpg' %}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+
+    <!-- ====== ionicons ======= -->
+    {% comment %} <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> {% endcomment %}
+</body>
+
+</html>

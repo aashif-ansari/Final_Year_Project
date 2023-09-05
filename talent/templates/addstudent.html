@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/add-form.css' %}">
+    
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">Audtions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/student/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search here">
+                        
+                    </label>
+                </div>
+
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+            
+               
+
+            <div class="staff-form-container">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <h2 class="form-title">ADDING STUDENT </h2>
+                    <div class="staff-form-content">
+                        <div class="input-box">
+                            <label for="name">FIRST NAME</label>
+                            <input type="text" placeholder="ENTER FIRST NAME" name=stu_firstname required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">LAST NAME</label>
+                            <input type="text" placeholder="ENTER LAST NAME" name=stu_lastname required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">PASSWORD</label>
+                            <input type="password" placeholder="PASSWORD " name=stu_password required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">ADDRESS</label>
+                            
+                            <input type="text" placeholder="ADDRESS" name=stu_address required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">GENDER</label>
+                            <input type="text" placeholder="GENDER" name=stu_gender required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">DATE OF BIRTH</label>
+                            <input type="DATE"  name=stu_dob required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">PH NO</label>
+                            <input type="mobile" placeholder="ENTER PHONE NUMBER" name=stu_mobile required>
+                        </div>
+                        <div class="input-box">
+                            <label for="name">EMAIL</label>
+                            <input type="email" placeholder="ENTER EMAIL" name=stu_email required>
+                        </div>
+                
+                    </div>
+                    <div class="staff-button-container">
+                        <button type="submit" name="submit">ADD</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+
+
+
+
+</body>
+</html>

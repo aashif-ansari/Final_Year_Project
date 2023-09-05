@@ -1,0 +1,55 @@
+/* SERVICE */
+
+.service{
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.service::after{
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: var(--lightred);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: var(--transition);
+}
+
+.service:hover::after{
+    width: 100%;
+    height: 100%;
+    background:#d9494e;
+    z-index: -4;
+}
+.service:hover h5,
+.service:hover p{
+    color: var(--white1);
+}
+.service:hover .iconBx{
+    color: var(--white1);
+}
+.theme-shadow{
+    box-shadow: var(--box-shadow);
+}
+.service .btn{
+    background-color: var(--black1);
+    color: var(--white1);
+}
+
+.service .btn:hover{
+    background-color: var(--white1);
+    color: var(--black1);
+}
+
+.iconBx{
+    width: 65px;
+    height: 65px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--lightred);
+    color: var(--black1);
+    font-size: 40px;
+}

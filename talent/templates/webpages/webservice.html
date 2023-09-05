@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HNJ Films - Services</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon"> -->
+  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/maincss/mainstyle.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/all.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/maincss/service.css' %}">
+
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+
+    <div class="container d-flex justify-content-center justify-content-md-between">
+
+      <div class="contact-info d-flex align-items-center ms-2">
+        <!-- <i class="fa fa-envelope"></i> -->
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:hnjfilms40@gmail.com">hnjfilms40@gmail.com </a></i>
+        <i class="bi bi-telephone d-flex align-items-center ms-4"><a href="tel:+91-8866511715">+918866511715</a></i>
+
+      </div>
+
+      <div class="social-links d-none d-md-flex align-items-center">
+
+        <a href="https://www.youtube.com/channel/UCJkm1JeHiafhyVfyR3xY3Fw" target="_blank"  title="youtube" class="youtube"><i class="bi bi-youtube"></i></i></a>
+        <a href="https://www.facebook.com/HNJ-Films-Auditions-update-2077888595856502/" target="_blank"  title="facebook" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/invites/contact/?i=vi17611ccomd&amp;utm_content=49l24nt" target="_blank"  title="instagram" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com/hnjinfo" target="_blank"  title="twitter" class="twitter"><i class="bi bi-twitter"></i></a>
+
+
+      </div>
+      <div class="joinus">
+        {% if c_id %}
+        <a href="{% url 'logoutcust' %}">
+          <button id="register" class="btn1">logout</button>
+        </a>
+
+     {% else %}
+
+        <a href="/login/"><button id="login" class="btn1">Login</button></a>
+        <a href="/register/"><button id="register" class="btn1">Register</button></a>
+        {% endif %}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!-- <h1 class="logo"><a href="index.html">BizLand<span>.</span></a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="#" class="logo"><img src="{% static 'assets/img/Background/final-logo-hnj.png' %}" alt=""></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="/webcourse/">Courses</a></li>
+          <li><a class="nav-link scrollto active" href="/webservice/">Services</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
+          <li><a class="nav-link scrollto" href="/feed/">Community</a></li>
+          <li><a class="nav-link scrollto" href="#casting">Casting</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- SERVICES -->
+
+  <section id="service" class="section-padding border-top">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h1 class="display-4 fw-semibold">Our Services</h1>
+                    <div class="line"></div>
+                    <p>We offer better service for your releases</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 text-center">
+          
+            {% for i in Service %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="service theme-shadow p-lg-5 p-4">
+
+                    <div class="iconBx">
+                        <i class="bi bi-film"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">{{i.service_name}}</h5>
+                    <p>{{i.service_desc}}</p>
+                    <a class="btn btn-brand me-2 mt-4" href="#" >Read More</a>
+                    <a class="btn btn-brand me-2 mt-4" href="/bookservice/{{i.service_id}}" >Book Now</a>
+                  
+                </div>
+            </div>
+            {% endfor %}
+
+            {% comment %} <div class="col-lg-4 col-sm-6">
+                <div class="service theme-shadow p-lg-5 p-4">
+                    
+                    <div class="iconBx">
+                        <i class="bi bi-music-note-beamed"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">Music Album</h5>
+                    <p>An album Song is a collection of audio recordings as a collection on disc, audio tape, or etc.</p>
+                    <a class="btn btn-brand me-2 mt-4" href="#" >Read More</a>
+                    <a class="btn btn-brand me-2 mt-4" href="#" >Book Now</a>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="service theme-shadow p-lg-5 p-4">
+                    
+                    <div class="iconBx">
+                        <i class="bi bi-tv-fill"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">TV Serials</h5>
+                    <p>A TV Serial is a story which is broadcast on television in a number of episode over a period of time.</p>
+                    <a class="btn btn-brand me-2 mt-4" href="#" >Read More</a>
+                    <a class="btn btn-brand me-2 mt-4" href="#" >Book Now</a>
+
+                </div>
+            </div> {% endcomment %}
+            
+        </div>
+        
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>HNJ Films<span></span></h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +91 88665 11715<br>
+              <strong>Email:</strong> hnjfilms40@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Film Making</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Music Album</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">TV Serials</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Videography</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Photography</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Courses</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="course">Dancing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="course">Acting</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="course">Modeling</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>HNJ Films</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->  
+
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

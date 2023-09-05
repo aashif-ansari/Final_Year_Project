@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin login - HNJ Films</title>
+    <link rel="stylesheet" href="{% static 'admin.css' %}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">Admin</div>
+      <form action="{% url 'adminlogin' %}" method="POST">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" name="email" required>
+          <label>Email</label>
+        </div>
+        <div class="field">
+          <input type="password" name="pass" required>
+          <label>Password</label>
+        </div>
+        {% comment %} <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+          </div>
+          <div class="pass-link"><a href="#">Forgot password?</a></div>
+        </div> {% endcomment %}
+        <br>
+        <div class="field">
+          <input type="submit" value="Login">
+        </div>
+        <br>
+        {% if messages %}
+        {% for msg in messages %}
+          <center><h3 class="error">{{msg}}</h3></center>
+        {% endfor %}
+        {% endif %}
+      </form>
+
+    </div>
+
+  </body>
+</html>

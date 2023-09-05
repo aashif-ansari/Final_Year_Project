@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HNJ Films</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'admin-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/add-form.css' %}">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fa fa-video-camera"></i>
+                        </span>
+                        <span class="brand">HNJ FILMS</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'admin' %}">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'courses' %}">
+                        <span class="icon"><i class="fas fa-book-open"></i></span>
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/services/">
+                        <span class="icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookingshow' %}">
+                        <span class="icon"><i class="fa fa-address-card"></i></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'staff' %}">
+                        <span class="icon"><i class="fas fa-user-clock"></i></span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="title">Audtions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/student/">
+                        <span class="icon"><i class="fas fa-address-book"></i></span>
+                        <span class="title">Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa-solid fa-rectangle-ad"></i></span>
+                        <span class="title">Ads</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logoutadmin/">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title signout">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search here">
+                        
+                    </label>
+                </div>
+
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+            </div>
+            
+               
+            
+            <div class="service-form-container">
+                <form action="/courseupdate/{{Course.course_id}}" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <h2 class="form-title">UPDATING COURSE</h2>
+                    <div class="form-content">
+                      
+                        
+                        <div class="input-box">
+                            <label for="name">COURSE NAME</label>
+                            <input type="text"  name='course_name' value="{{Course.course_name}}" >
+                        </div>
+                        <div class="input-box">
+                            <label for="name">COURSE CAPTION</label>
+                            <input type="text"  name='course_cap' value="{{Course.course_cap}}" >
+                        </div>
+                        <div class="input-box">
+                            <label for="name">COURSE DESCRIPTION </label>
+                            <textarea name='course_desc' cols="38" rows="8">{{Course.course_desc}}</textarea>
+                            {% comment %} <input type="text"  name='course_desc' value="{{Course.course_desc}}" > {% endcomment %}
+                        </div>
+                        <div class="input-box">
+                            <label for="name">COURSE AVAL SEAT</label>
+                            <input type="float"  name='course_aval_seat' value="{{Course.course_aval_seat}}">
+                        </div>
+                        
+                        <div class="input-box">
+                            <label for="name">COURSE IMAGE</label>
+                            <input type="file"  name='course_image' value="{{Course.course_image}}" >
+                        </div>
+                        
+
+                        <div class="button-container">
+                            <button type="submit" name="submit">UPDATE</button>
+                    
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'webjs/admin.js' %}"></script>
+
+
+
+
+</body>
+</html>
